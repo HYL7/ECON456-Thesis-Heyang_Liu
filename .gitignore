@@ -54,3 +54,5 @@ rsconnect/
 *.Rdata
 *.tsv
 *.zip
+*.xlsx
+*.xls
