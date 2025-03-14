@@ -116,3 +116,48 @@ ggplot(df, aes(x = `Total.investment`)) +
   geom_boxplot(fill = "lightblue", color = "black") +
   labs(title = "Boxplot of Total Investment", x = "Total Investment") +
   theme_minimal()
+
+ggplot(df, aes(x = Gross.national.savings)) +
+  geom_histogram(binwidth = 2, fill = "steelblue", color = "black", alpha = 0.7) +
+  labs(title = "Histogram of Gross National Savings", x = "Gross National Savings", y = "Frequency") +
+  theme_minimal()
+
+ggplot(df, aes(x = General.government.revenue)) +
+  geom_histogram(binwidth = 2, fill = "steelblue", color = "black", alpha = 0.7) +
+  labs(title = "Histogram of General Government Revenue", x = "General Government Revenue", y = "Frequency") +
+  theme_minimal()
+
+ggplot(df, aes(x = "", y = General.government.revenue)) +
+  geom_boxplot(fill = "lightblue", color = "black") +
+  labs(title = "Boxplot of General Government Revenue", x = "", y = "General Government Revenue") +
+  theme_minimal()
+
+ggplot(df, aes(x = "", y = General.government.total.expenditure)) +
+  geom_boxplot(fill = "lightblue", color = "black") +
+  labs(title = "Boxplot of General Government Total Expenditure", x = "", y = "General Government Total Expenditure") +
+  theme_minimal()
+
+ggplot(df, aes(x = General.government.total.expenditure)) +
+  geom_histogram(binwidth = 2, fill = "steelblue", color = "black", alpha = 0.7) +
+  labs(title = "Histogram of General Government Total Expenditure", x = "General Government Total Expenditure", y = "Frequency") +
+  theme_minimal()
+
+
+ggplot(df, aes(x = General.government.net.lending.borrowing)) +
+  geom_histogram(binwidth = 2, fill = "steelblue", color = "black", alpha = 0.7) +
+  labs(title = "Histogram of General Government Net Lending/Borrowing", x = "General Government Net Lending/Borrowing", y = "Frequency") +
+  theme_minimal()
+
+ggplot(df, aes(x = General.government.net.debt)) +
+  geom_boxplot(fill = "lightblue", color = "black") +
+  labs(title = "Boxplot of General Government Net Debt", x = "General Government Net Debt") +
+  theme_minimal()
+
+ggplot(df, aes(x = Current.account.balance)) +
+  geom_boxplot(fill = "lightblue", color = "black") +
+  labs(title = "Boxplot of Current Account Balance", x = "Current Account Balance") +
+  theme_minimal()
+ggplot(df, aes(x = Current.account.balance)) +
+  geom_histogram(binwidth = 1.5, fill = "steelblue", color = "black", alpha = 0.7) +
+  labs(title = "Histogram of Current Account Balance", x = "Current Account Balance", y = "Frequency") +
+  theme_minimal()
