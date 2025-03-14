@@ -12,6 +12,7 @@ library(dplyr)
 library(tidyr)
 library(readxl)
 library(psych)
+library(ggplot2)
 
 ## Directory creation
 
