@@ -230,9 +230,9 @@ for (subject in subject_names[-1]){
   
   temp_data <- temp_data %>%
     pivot_longer(
-      cols = -c(`Country Name`, `Country Code`),  # 只转换年份列
+      cols = -c(`Country Name`, `Country Code`),
       names_to = "year",
-      values_to = subject  # 动态赋值列名
+      values_to = subject
     ) %>%
     mutate(year = as.integer(year),
            across(all_of(subject), ~ as.numeric(.))
