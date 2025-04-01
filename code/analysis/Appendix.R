@@ -148,10 +148,6 @@ ggplot(df, aes(x = General.government.net.lending.borrowing)) +
   labs(title = "Histogram of General Government Net Lending/Borrowing", x = "General Government Net Lending/Borrowing", y = "Frequency") +
   theme_minimal()
 
-ggplot(df, aes(x = General.government.net.debt)) +
-  geom_boxplot(fill = "lightblue", color = "black") +
-  labs(title = "Boxplot of General Government Net Debt", x = "General Government Net Debt") +
-  theme_minimal()
 
 ggplot(df, aes(x = Current.account.balance)) +
   geom_boxplot(fill = "lightblue", color = "black") +

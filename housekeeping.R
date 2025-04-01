@@ -13,6 +13,10 @@ library(tidyr)
 library(readxl)
 library(psych)
 library(ggplot2)
+library(modelsummary)
+library(cluster)
+library(factoextra)
+library(fixest)
 
 ## Directory creation
 

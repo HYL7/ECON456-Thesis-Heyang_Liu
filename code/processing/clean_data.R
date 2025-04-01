@@ -241,15 +241,66 @@ for (subject in subject_names[-1]){
   econ_panel<-full_join(econ_panel, temp_data, by = c("Country Name","Country Code", "year"))
 }
 
+#convert GDP into Real GDP, using GDP Deflator (then remove it)
+econ_panel$GDP<-econ_panel$GDP/econ_panel$`GDP Deflator`*100
+
+econ_panel<-econ_panel%>%
+  rename(`Real GDP` = GDP)%>%
+  select(-5)
+
 full_data<-full_join(remittance_inequality_education, econ_panel,by = c("Country Name","Country Code", "year"))
+
+#now check how many observations are droped for each economic variable added to the dataset, see if there is any variable that result in to many of NA
+# Drop NA for first 14 columns
+cleaned_base <- full_data[complete.cases(full_data[, 1:14]), ]
+
+# see the NA counts
+na_counts <- sapply(cleaned_base, function(x) sum(is.na(x)))
+
+# as data frame
+na_info <- data.frame(
+  Variable = names(na_counts),
+  NA_Count = na_counts
+)
+
+
+# sort based on the number of NAs
+na_info <- na_info[order(-na_info$NA_Count), ]
+
+# print
+print(na_info)
+
+#Based on the result, General government net debt should be removed
+
+full_data<-cleaned_base[, -24]
 full_data<-full_data%>%drop_na()
 
-#convert GDP into Real GDP, using GDP Deflator (then remove it)
-full_data$GDP<-full_data$GDP/full_data$`GDP Deflator`*100
 
-full_data<-full_data%>%
-  rename(`Real GDP` = GDP)%>%
-  select(-16)
+#Given the low number of observation of years, create a period variable for fixed effect analysis
+full_data$period <- with(full_data, ifelse(year >= 1980 & year <= 1990, 1,
+                                    ifelse(year >= 1991 & year <= 1999, 2,
+                                    ifelse(year >= 2000 & year <= 2003, 3,
+                                    ifelse(year == 2004, 4,
+                                    ifelse(year == 2005, 5,
+                                    ifelse(year == 2006, 6,
+                                    ifelse(year == 2007, 7,
+                                    ifelse(year == 2008, 8,
+                                    ifelse(year == 2009, 9,
+                                    ifelse(year == 2010, 10,
+                                    ifelse(year == 2011, 11,
+                                    ifelse(year == 2012, 12,
+                                    ifelse(year >= 2013 & year <= 2015, 13, NA))))))))))))))
+
+# change name
+full_data$period <- factor(full_data$period,
+                           levels = 1:13,
+                           labels = c("1980–1990", "1991–1999", "2000–2003",
+                                      "2004", "2005", "2006", "2007", "2008",
+                                      "2009", "2010", "2011", "2012", "2013–2015"))
+#change order
+year_index <- which(names(full_data) == "year")
+period_index <- which(names(full_data) == "period")
+full_data <- full_data[, append(setdiff(1:ncol(full_data), period_index), period_index, after = year_index)]
 
 
 write.csv(full_data,file = file.path(clean_dir,"cleaned_data.csv"), row.names = FALSE)
