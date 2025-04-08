@@ -20,7 +20,7 @@ ggplot(df, aes(x = Remittance_as_percent, y = residuals(no_remit))) +
     size = 2
   ) +
   geom_smooth(method = "lm", se = FALSE, color = "red") +
-  labs(title = "Binned Residuals vs Remit/GDP (Gini Coefficient)",
+  labs(title = "Binned Residuals vs Remit/GDP",
        x = "Remit/GDP",
        y = "Mean Residual in Bin") +
   theme_minimal()
@@ -41,11 +41,43 @@ ggplot(df, aes(x = Remittance_as_percent, y = residuals(no_remit))) +
     color = "red"
   ) +
   labs(
-    title = "Binned Residuals vs Remit/GDP",
+    title = "Binned Residuals vs Remit/GDP (oefficient)",
     x = "Remit/GDP",
     y = "Mean Residual in Bin"
   ) +
   theme_minimal()
+
+  #two in one
+ggplot(df, aes(x = Remittance_as_percent, y = residuals(no_remit))) +
+  stat_summary_bin(
+    fun = mean,
+    bins = 30, 
+    geom = "point",
+    color = "blue",
+    size = 2
+  ) +
+  geom_smooth(
+    method = "lm",
+    se = FALSE,
+    aes(color = "Linear", linetype = "Linear")
+  ) +
+  geom_smooth(
+    method = "lm",
+    formula = y ~ poly(x, 2),
+    se = FALSE,
+    aes(color = "Quadratic", linetype = "Quadratic")
+  ) +
+  scale_color_manual(name = "Regression Type",
+                     values = c("Linear" = "red", "Quadratic" = "darkgreen")) +
+  scale_linetype_manual(name = "Regression Type",
+                        values = c("Linear" = "solid", "Quadratic" = "dashed")) +
+  labs(
+    title = "Binned Residuals vs Remit/GDP",
+    x = "Remit/GDP",
+    y = "Mean Residual in Bin"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "top")
 
 
 
@@ -70,7 +102,7 @@ ggplot(df, aes(x = school_13, y = residuals(no_school13))) +
     size = 2
   ) +
   geom_smooth(method = "lm", se = FALSE, color = "red") +
-  labs(title = "Binned Residuals vs ISCED Level 1-3 Expectancy (Gini Coefficient)",
+  labs(title = "Binned Residuals vs ISCED Level 1-3 Expectancy",
        x = "ISCED Level 1-3 School Life Expectancy",
        y = "Mean Residual in Bin") +
   theme_minimal()
@@ -90,11 +122,27 @@ ggplot(df, aes(x = school_13, y = residuals(no_school13))) +
     color = "red"
   ) +
   labs(
-    title = "Binned Residuals vs ISCED Level 1-3 Expectancy (Gini Coefficient)",
+    title = "Binned Residuals vs ISCED Level 1-3 Expectancy",
     x = "ISCED Level 1-3 School Life Expectancy",
     y = "Mean Residual in Bin"
   ) +
   theme_minimal()
+
+  #two in one
+ggplot(df, aes(x = school_13, y = residuals(no_school13))) +
+  stat_summary_bin(fun = mean, bins = 30, geom = "point", color = "blue", size = 2) +
+  geom_smooth(method = "lm", se = FALSE, aes(color = "Linear", linetype = "Linear")) +
+  geom_smooth(method = "lm", formula = y ~ poly(x, 2), se = FALSE,
+              aes(color = "Quadratic", linetype = "Quadratic")) +
+  scale_color_manual(name = "Regression Type",
+                     values = c("Linear" = "red", "Quadratic" = "darkgreen")) +
+  scale_linetype_manual(name = "Regression Type",
+                        values = c("Linear" = "solid", "Quadratic" = "dashed")) +
+  labs(title = "Binned Residuals vs ISCED Level 1-3 Expectancy",
+       x = "ISCED Level 1-3 School Life Expectancy",
+       y = "Mean Residual in Bin") +
+  theme_minimal() +
+  theme(legend.position = "top")
 
 
 #no school_58
@@ -118,7 +166,7 @@ ggplot(df, aes(x = school_58, y = residuals(no_school58))) +
     size = 2
   ) +
   geom_smooth(method = "lm", se = FALSE, color = "red") +
-  labs(title = "Binned Residuals vs ISCED Level 5-8 Expectancy (Gini Coefficient)",
+  labs(title = "Binned Residuals vs ISCED Level 5-8 Expectancy",
        x = "ISCED Level 1-3 School Life Expectancy",
        y = "Mean Residual in Bin") +
   theme_minimal()
@@ -139,8 +187,24 @@ ggplot(df, aes(x = school_58, y = residuals(no_school58))) +
     color = "red"
   ) +
   labs(
-    title = "Binned Residuals vs ISCED Level 5-8 Expectancy (Gini Coefficient)",
+    title = "Binned Residuals vs ISCED Level 5-8 Expectancy",
     x = "ISCED Level 5-8 School Life Expectancy",
     y = "Mean Residual in Bin"
   ) +
   theme_minimal()
+
+  #two in one
+ggplot(df, aes(x = school_58, y = residuals(no_school58))) +
+  stat_summary_bin(fun = mean, bins = 30, geom = "point", color = "blue", size = 2) +
+  geom_smooth(method = "lm", se = FALSE, aes(color = "Linear", linetype = "Linear")) +
+  geom_smooth(method = "lm", formula = y ~ poly(x, 2), se = FALSE,
+              aes(color = "Quadratic", linetype = "Quadratic")) +
+  scale_color_manual(name = "Regression Type",
+                     values = c("Linear" = "red", "Quadratic" = "darkgreen")) +
+  scale_linetype_manual(name = "Regression Type",
+                        values = c("Linear" = "solid", "Quadratic" = "dashed")) +
+  labs(title = "Binned Residuals vs ISCED Level 5-8 Expectancy",
+       x = "ISCED Level 5-8 School Life Expectancy",
+       y = "Mean Residual in Bin") +
+  theme_minimal() +
+  theme(legend.position = "top")
