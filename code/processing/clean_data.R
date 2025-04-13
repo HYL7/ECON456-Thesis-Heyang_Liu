@@ -278,25 +278,27 @@ full_data<-full_data%>%drop_na()
 
 #Given the low number of observation of years, create a period variable for fixed effect analysis
 full_data$period <- with(full_data, ifelse(year >= 1980 & year <= 1990, 1,
-                                    ifelse(year >= 1991 & year <= 1999, 2,
-                                    ifelse(year >= 2000 & year <= 2003, 3,
-                                    ifelse(year == 2004, 4,
-                                    ifelse(year == 2005, 5,
-                                    ifelse(year == 2006, 6,
-                                    ifelse(year == 2007, 7,
-                                    ifelse(year == 2008, 8,
-                                    ifelse(year == 2009, 9,
-                                    ifelse(year == 2010, 10,
-                                    ifelse(year == 2011, 11,
-                                    ifelse(year == 2012, 12,
-                                    ifelse(year >= 2013 & year <= 2015, 13, NA))))))))))))))
+                                    ifelse(year >= 1991 & year <= 1996, 2,
+                                    ifelse(year >= 1997 & year <= 2000, 3,
+                                    ifelse(year >= 2001 & year <= 2003, 4,
+                                    ifelse(year == 2004, 5,
+                                    ifelse(year == 2005, 6,
+                                    ifelse(year == 2006, 7,
+                                    ifelse(year == 2007, 8,
+                                    ifelse(year == 2008, 9,
+                                    ifelse(year == 2009, 10,
+                                    ifelse(year == 2010, 11,
+                                    ifelse(year == 2011, 12,
+                                    ifelse(year == 2012, 13,
+                                    ifelse(year >= 2013 & year <= 2015, 14, NA)))))))))))))))
 
-# change name
+# 修改 factor 标签
 full_data$period <- factor(full_data$period,
-                           levels = 1:13,
-                           labels = c("1980–1990", "1991–1999", "2000–2003",
+                           levels = 1:14,
+                           labels = c("1980–1990", "1991–1996", "1997–2000", "2001–2003",
                                       "2004", "2005", "2006", "2007", "2008",
                                       "2009", "2010", "2011", "2012", "2013–2015"))
+
 #change order
 year_index <- which(names(full_data) == "year")
 period_index <- which(names(full_data) == "period")
