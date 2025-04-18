@@ -23,7 +23,7 @@ colnames(percentile_75) <- "75th Percentile"
 # merge 25th, 75th
 desc_stats_df <- cbind(desc_stats_df, percentile_25, percentile_75)
 
-# 删除不需要的列
+# delete useless stats
 desc_stats_df <- desc_stats_df[, !colnames(desc_stats_df) %in% c("vars", "n", "kurtosis", "se", "mad", "trimmed","skew","range")]
 
 # makesure the names are correct

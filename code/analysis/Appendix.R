@@ -38,11 +38,6 @@ ggplot(df, aes(x = Remittance_as_percent)) +
   theme_minimal()
 
 
-ggplot(df, aes(y = Remittance_as_percent)) +
-  geom_boxplot(fill = "lightblue", color = "black") +
-  labs(title = "Boxplot of Remittance as Percent", y = "Remittance as Percent") +
-  theme_minimal()
-
 
 ggplot(df, aes(x = Remittance_recieved)) +
   geom_histogram(binwidth = 1e9, fill = "steelblue", color = "black", alpha = 0.7) +
@@ -62,6 +57,10 @@ ggplot(df, aes(x = gini_std)) +
 ggplot(df, aes(x = bottom20)) +
   geom_histogram(binwidth = 1, fill = "steelblue", color = "black", alpha = 0.7) +
   labs(title = "Histogram of Bottom 20% Income Share", x = "Income Share of Bottom 20%", y = "Frequency") +
+  theme_minimal()
+ggplot(df, aes(y = bottom20)) +
+  geom_boxplot(fill = "lightblue", color = "black") +
+  labs(title = "Boxplot of Bottom 20% Income Share", y = "Income Share of Bottom 20%") +
   theme_minimal()
 
 
@@ -93,11 +92,6 @@ ggplot(df, aes(y = school_58)) +
   theme_minimal()
 
 ggplot(df, aes(x = Real.GDP)) +
-  geom_histogram(binwidth = 1e12, fill = "steelblue", color = "black", alpha = 0.7) +
-  labs(title = "Histogram of Real GDP", x = "Real GDP", y = "Frequency") +
-  theme_minimal()
-
-ggplot(df, aes(x = Real.GDP)) +
   geom_boxplot(fill = "lightblue", color = "black") +
   labs(title = "Boxplot of Real GDP", x = "Real GDP") +
   theme_minimal()
@@ -122,15 +116,12 @@ ggplot(df, aes(x = Gross.national.savings)) +
   labs(title = "Histogram of Gross National Savings", x = "Gross National Savings", y = "Frequency") +
   theme_minimal()
 
-ggplot(df, aes(x = General.government.revenue)) +
-  geom_histogram(binwidth = 2, fill = "steelblue", color = "black", alpha = 0.7) +
-  labs(title = "Histogram of General Government Revenue", x = "General Government Revenue", y = "Frequency") +
+
+ggplot(df, aes(x = Unemployment.rate)) +
+  geom_histogram(binwidth = 1.5, fill = "steelblue", color = "black", alpha = 0.7) +
+  labs(title = "Histogram of Unemployment rate", x = "Unemployment rate", y = "Frequency") +
   theme_minimal()
 
-ggplot(df, aes(x = "", y = General.government.revenue)) +
-  geom_boxplot(fill = "lightblue", color = "black") +
-  labs(title = "Boxplot of General Government Revenue", x = "", y = "General Government Revenue") +
-  theme_minimal()
 
 ggplot(df, aes(x = "", y = General.government.total.expenditure)) +
   geom_boxplot(fill = "lightblue", color = "black") +

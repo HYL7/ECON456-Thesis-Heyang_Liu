@@ -292,7 +292,7 @@ full_data$period <- with(full_data, ifelse(year >= 1980 & year <= 1990, 1,
                                     ifelse(year == 2012, 13,
                                     ifelse(year >= 2013 & year <= 2015, 14, NA)))))))))))))))
 
-# 修改 factor 标签
+
 full_data$period <- factor(full_data$period,
                            levels = 1:14,
                            labels = c("1980–1990", "1991–1996", "1997–2000", "2001–2003",
